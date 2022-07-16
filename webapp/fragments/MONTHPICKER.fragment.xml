@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="datemonth" icon=""  title="Enter Date" class="sapUiNoContentPadding sapUiSizeCompact" verticalScrolling="true"
+		type="Standard" draggable="true">
+		<content>
+			
+			<DatePicker
+			id="month"
+			value="2014-03-27" valueFormat="yyyy-MM-dd" displayFormat="long"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/>
+
+		</content>
+			<Button text="Close" press="onMonthClose" visible ="true"></Button>
+		<endButton>
+			<Button text="Select" press="onMonthSelect" visible="true"></Button>  
+		
+		</endButton>
+	</Dialog> 
+</core:FragmentDefinition>

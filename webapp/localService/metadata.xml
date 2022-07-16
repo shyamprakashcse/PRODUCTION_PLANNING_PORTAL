@@ -1,0 +1,109 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZODATA_PPP_INTERNPROJECT_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="CREDENTIALS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Flief"/>
+                    <PropertyRef Name="Passkey"/>
+                </Key>
+                <Property Name="Flief" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Fixed vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usnam" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Name 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Passkey" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="PASSWORD" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Designation" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="DESIGNATION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plwrk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Planning plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pwwrk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Producing plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PLANNEDORDER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plnum"/>
+                </Key>
+                <Property Name="Plnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Planned order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plwrk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Planning plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pwwrk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Producing plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gsmng" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:label="Order quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Psttr" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Order start" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pedtr" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Order finish" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Webaz" Type="Edm.Decimal" Nullable="false" Precision="3" Scale="0" sap:label="GR ProcessTime" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dispo" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="MRP controller" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Umskz" Type="Edm.Boolean" Nullable="false" sap:label="Conversion" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Flief" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Fixed vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Verid" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Prod. Version" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Terst" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Prod.start date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tered" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Product. finish" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PRODORDER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderNumber"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductionPlant" Type="Edm.String" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MrpController" Type="Edm.String" MaxLength="3" sap:label="MRP controller" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductionScheduler" Type="Edm.String" MaxLength="3" sap:label="Prodn Superv." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="18" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExplDate" Type="Edm.DateTime" Precision="7" sap:label="Explosion Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutingNo" Type="Edm.String" MaxLength="10" sap:label="Plan no.f.oper." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReservationNumber" Type="Edm.String" MaxLength="10" sap:label="Reservation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchedReleaseDate" Type="Edm.DateTime" Precision="7" sap:label="Release" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActualReleaseDate" Type="Edm.DateTime" Precision="7" sap:label="Actual release" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FinishDate" Type="Edm.DateTime" Precision="7" sap:label="Basic fin. date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="7" sap:label="Bas. start date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductionFinishDate" Type="Edm.DateTime" Precision="7" sap:label="Sched. finish" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductionStartDate" Type="Edm.DateTime" Precision="7" sap:label="Sched. start" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActualStartDate" Type="Edm.DateTime" Precision="7" sap:label="Actual start" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActualFinishDate" Type="Edm.DateTime" Precision="7" sap:label="Actual finish" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Scrap" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Scrap" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TargetQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Target Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" MaxLength="3" sap:label="Unit of measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="UnitIso" Type="Edm.String" MaxLength="3" sap:label="ISO code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Priority" Type="Edm.String" MaxLength="1" sap:label="Priority" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderType" Type="Edm.String" MaxLength="4" sap:label="Order Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EnteredBy" Type="Edm.String" MaxLength="12" sap:label="Entered by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EnterDate" Type="Edm.DateTime" Precision="7" sap:label="Created on" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeletionFlag" Type="Edm.Boolean" sap:label="Deletion flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WbsElement" Type="Edm.String" MaxLength="24" sap:label="WBS Element" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfNo" Type="Edm.String" MaxLength="10" sap:label="Confirmation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfCnt" Type="Edm.String" MaxLength="8" sap:label="Counter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IntObjNo" Type="Edm.String" MaxLength="18" sap:label="Int. object no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchedFinTime" Type="Edm.Time" Precision="0" sap:label="Finish Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchedStartTime" Type="Edm.Time" Precision="0" sap:label="SchedStartTime" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CollectiveOrder" Type="Edm.String" MaxLength="1" sap:label="Coll. Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderSeqNo" Type="Edm.String" MaxLength="14" sap:label="Sequence number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FinishTime" Type="Edm.Time" Precision="0" sap:label="Basic fin. time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartTime" Type="Edm.Time" Precision="0" sap:label="Start time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActualStartTime" Type="Edm.Time" Precision="0" sap:label="ActualStart" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LeadingOrder" Type="Edm.String" MaxLength="12" sap:label="Leading order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SalesOrder" Type="Edm.String" MaxLength="10" sap:label="Sales Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" MaxLength="6" sap:label="Sales ord. item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProdSchedProfile" Type="Edm.String" MaxLength="6" sap:label="ProdProfile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialText" Type="Edm.String" MaxLength="40" sap:label="Material Descr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SystemStatus" Type="Edm.String" MaxLength="40" sap:label="System Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfirmedQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Committed" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlanPlant" Type="Edm.String" MaxLength="4" sap:label="Planning plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialExternal" Type="Edm.String" MaxLength="40" sap:label="Material Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialGuid" Type="Edm.String" MaxLength="32" sap:label="GUID (External)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialVersion" Type="Edm.String" MaxLength="10" sap:label="Version Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateOfExpiry" Type="Edm.DateTime" Precision="7" sap:label="BBD/SLED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateOfManufacture" Type="Edm.DateTime" Precision="7" sap:label="Date of Manuf." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialLong" Type="Edm.String" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZODATA_PPP_INTERNPROJECT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CREDENTIALSSet" EntityType="ZODATA_PPP_INTERNPROJECT_SRV.CREDENTIALS" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PLANNEDORDERSet" EntityType="ZODATA_PPP_INTERNPROJECT_SRV.PLANNEDORDER" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PRODORDERSet" EntityType="ZODATA_PPP_INTERNPROJECT_SRV.PRODORDER" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZODATA_PPP_INTERNPROJECT_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZODATA_PPP_INTERNPROJECT_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

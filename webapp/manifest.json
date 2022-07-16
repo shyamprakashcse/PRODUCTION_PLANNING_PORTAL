@@ -1,0 +1,175 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZODATA_PPP_INTERNPROJECT_SRV": {
+				"uri": "/sap/opu/odata/sap/ZODATA_PPP_INTERNPROJECT_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL.view.ROOTVIEW",
+			"type": "XML",
+			"async": true, 
+			"id": "app"
+		},
+		
+		
+		
+		
+		
+		"handleValidation" : false ,
+		"config": {},
+		
+		
+		
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true, 
+			    "clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "login",
+					"pattern": "",
+					"target": "TargetLogin"
+				},
+				{
+					"name" :"dashboard",
+					"pattern" :"dashboard/{value}",
+					"target":"TargetDashboard"
+				},
+					{
+					"name": "home",
+					"pattern": "home/{value}",
+					"target": "TargetHome"
+				}
+				
+			],
+			"targets": {
+				"TargetLogin": {
+					"viewId": "login",
+					"viewName": "LOGINPAGE", 
+					 "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true
+				},
+				"TargetDashboard":{
+					"viewId": "dashboard",
+					"viewName": "DASHBOARD",
+					"viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true
+                }, 
+                "TargetHome":{
+                	"viewId": "home",
+					"viewName": "HOME",
+					"viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true
+                }
+			
+					
+			}
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,702 @@
+<mvc:View controllerName="COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL.controller.HOME" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.suite.ui.commons" 	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
+		<detailPages>
+			<Page id="detail" title="Planned Order Details" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }"
+				navButtonPress=".onPressDetailBack" >
+			
+				
+					<IconTabBar
+			id="idIconTabBar"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding myWidth"> 
+			<items>
+			
+				
+			      	<IconTabFilter
+			
+					icon="sap-icon://grid"
+					iconColor="Positive"
+					count=""
+					text="Dashboard"
+					key="dashboard" /> 
+					
+					<IconTabFilter
+			
+					icon="sap-icon://appointment"
+					iconColor="Critical"
+					count="{usermodel>/TotalPlan}"
+					text="Planned Order"
+					key="Plorder" /> 
+					
+					<IconTabFilter
+			
+					icon="sap-icon://appointment-2"
+					iconColor="Positive"
+					count="{usermodel>/YearPlan}"
+					text="Year Sorter"
+					key="plyrsorter" /> 
+					
+					<IconTabFilter
+			
+					icon="sap-icon://accelerated"
+					iconColor="Positive"
+					count="{usermodel>/MonthPlan}"
+					text="Month Sorter"
+					key="plmonsorter" /> 
+					
+					<IconTabFilter
+			
+					icon="sap-icon://approvals"
+					iconColor="Negative"
+					count="{usermodel>/Prcnt}"
+					text="Production Order Notification"
+					key="Prodord" /> 
+					
+					
+					
+					
+						<IconTabFilter
+			
+					icon="sap-icon://log"
+					iconColor="Negative"
+				    
+					text="Log Out"
+					key="Logout" /> 
+					
+					
+			</items></IconTabBar>
+				<Table id="idNotificationTable" inset="false" items="{/results}">
+					<headerToolbar>
+						<OverflowToolbar >
+							<Title text="Planned Order Details View" level="H2"/>
+							<content>
+								<!--<ToolbarSpacer/>-->
+								<!--<SearchField liveChange=".onSearch" width="17.5rem"/>-->
+								<!--<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>-->
+								<!--<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>--> 
+								       
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<infoToolbar>
+						<OverflowToolbar>
+							<Label text="Received Planned Orders"/>
+						</OverflowToolbar>
+					</infoToolbar>
+					<columns>
+						<Column width="12em">
+							<Text text="Planned Order ID"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Material No"/>
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+							<Text text="Planned Order Quantity"/>
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+							<Text text="Planned Order Start Date"/>
+						</Column>
+						<Column hAlign="End">
+							<Text text="Planned Order End Date"/>
+						</Column> 
+						
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle" type="Navigation" press=".onTablePress">
+							<cells>
+								<ObjectStatus class="sapUiSmallMarginBottom rose" title="" icon="sap-icon://business-card" text="{Plnum}"/>
+								<ObjectStatus class="sapUiSmallMarginBottom " text="{Matnr}" icon="sap-icon://business-objects-mobile" state="Success"/>
+								<!--<Text-->
+								<!--	text="{Plantname}" /> -->
+								<ObjectStatus class="sapUiSmallMarginBottom blue" text="{Gsmng}" icon="sap-icon://lead-outdated" state="Error"/>
+								<ObjectStatus class="sapUiSmallMarginBottom cream" text="{
+									          parts:[
+									            {path : 'Psttr' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" icon="sap-icon://date-time" state="None"/> 
+								
+								
+								<l:VerticalLayout class="sapUiContentPadding">
+								
+									
+									<ObjectStatus class="sapUiSmallMarginBottom purple" text="{
+									          parts:[
+									            {path : 'Pedtr' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" icon="sap-icon://date-time" state="None"/> 
+								
+									
+								</l:VerticalLayout> 
+							
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			
+			</Page>
+			
+			
+			
+			<Page id="detailDetail" title="Shop Floor Order Details" backgroundDesign="Solid" showNavButton="true" navButtonPress=".onPressDetailBack">  
+			  
+			
+			  <IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}"
+	                           class="sapUiResponsiveContentPadding" select=".onFilterSelect">
+		  
+		  
+		<items>
+			<IconTabFilter text="Planned Order Header Details" key="NotifHead" class="sapUiResponsiveContentPadding">
+				            
+				                   <VBox class="sapUiSmallMargin">
+					<!--<Label text="This is Detail Page 2" />-->
+					<!--<Text text="Here you could change the Split Application mode. After the mode change, resize the browser window to see the difference in the master form behaviour." />-->
+					<!--<Panel headerText="Upper center"> -->
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="former" editable="false" layout="ResponsiveGridLayout" title="Planned Order Detail Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" >
+							<form:content id="form" key="prop"> 
+							  	<core:Title text="Planned Order Info" class="blue" />
+								<Label text="Planned Order No" class="title"/>
+								<Text text="{notifymodel>/Plnum}" class="green"/> 
+								<Label text="Material Number" class="title"/>
+								<Text text="{notifymodel>/Matnr}" class="green"/> 
+							
+								<core:Title text="Order Info" class="blue" />
+								<Label text="MRP CONTROLLER ID" class="title"/>
+								<Text text="{notifymodel>/Dispo}" class="green"/> 
+								<Label text="Planned Order Quantity" class="title"/>
+								<Text text="{notifymodel>/Gsmng}" class="green"/> 
+								<Label text="Product Version ID" class="title"/>
+								<Text text="{notifymodel>/Verid}" class="green"/>  
+								<Label text="Conversion Indicator" class="title"/>
+								<Text text="{notifymodel>/Umskz}" class="green"/>  
+								<Label text="Processing Order Goods Time" class="title"/>
+								<Text text="{notifymodel>/Webaz} Days" class="green"/>  
+							
+						
+							</form:content> 
+						
+
+						</form:SimpleForm> 
+					
+					</VBox>
+					<!--	</Panel>  -->  
+				
+				
+					
+					
+				</VBox> 
+				       
+				
+			</IconTabFilter>
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			<IconTabFilter text="Planned order Plant" key="NotifProb">
+			 
+				 <VBox class="sapUiSmallMargin">
+				
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="probform" editable="false" layout="ResponsiveGridLayout" title="Planned Order Plant Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content id="prob" key="probdet">
+								
+							 <core:Title text="Planned Order Plant Details"/>
+								<Label text="Planned Plant NO"/>
+								<Text text="{notifymodel>/Plwrk}"/> 
+								
+								<Label text="Planned Order Start Date"/>
+								<Text text="{
+									          parts:[
+									            {path : 'notifymodel>/Psttr' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" /> 
+								
+									
+								<Label text="Planned Order End Date"/>
+								<Text text="{
+									          parts:[
+									            {path : 'notifymodel>/Pedtr' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}"/> 
+								
+								
+							</form:content>
+						</form:SimpleForm> 
+					</VBox>  
+				</VBox>
+			</IconTabFilter>
+			
+			
+			<IconTabFilter text="Production Order Plant Details" key="Plant">
+				
+				<VBox class="sapUiSmallMargin">
+				
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="plantform" editable="false" layout="ResponsiveGridLayout" title="Prodution Plant Detail Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content id="plantid" key="plantdet">
+								
+							 <core:Title text="Production Plant Details"/>
+								<Label text="Planned Plant NO"/>
+								<Text text="{notifymodel>/Pwwrk}"/> 
+								
+								<Label text="Planned Order Start Date"/>
+								<Text text="{
+									          parts:[
+									            {path : 'notifymodel>/Terst' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}"/> 
+								
+									
+								<Label text="Planned Order End Date"/>
+								<Text text="{
+									          parts:[
+									            {path : 'notifymodel>/Tered' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}"/> 	
+							
+							</form:content>
+						</form:SimpleForm> 
+					</VBox>  
+				</VBox>
+				
+				
+			</IconTabFilter> 
+			
+			
+		
+			
+			
+			
+			
+		</items>
+		
+	</IconTabBar>
+			   
+			  
+	        </Page>
+			
+			
+			<Page id="detail2" title="Production Order Page" backgroundDesign="Solid" showNavButton="true" navButtonPress=".onPressDetailBack">
+			  
+			 	<IconTabBar
+			id="idProdIconTabBar"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding myWidth">
+			<items>
+			
+				
+			      	<IconTabFilter
+			
+					icon="sap-icon://grid"
+					iconColor="Positive"
+					count=""
+					text="Dashboard"
+					key="dashboard" /> 
+					
+					
+					
+						<IconTabFilter
+			
+					icon="sap-icon://approvals"
+					iconColor="Negative"
+					count="{usermodel>/TotalProdCount}"
+					text="Production Order Notification" 
+				    
+					key="production" /> 
+					
+					<IconTabFilter
+			
+					icon="sap-icon://appointment-2"
+					iconColor="Negative"
+					count="{usermodel>/MonthCount}"
+					text="Month Sorter" 
+				    
+					key="MonthSorter" /> 
+					
+						<IconTabFilter
+			
+					icon="sap-icon://appointment"
+					iconColor="Negative"
+					count="{usermodel>/YearCount}"
+					text="YearSorter" 
+				    
+					key="Prodordsort" /> 
+					
+					
+					
+					
+						<IconTabFilter
+			
+					icon="sap-icon://log"
+					iconColor="Negative"
+				    
+					text="Log Out"
+					key="Logout" /> 
+					
+					
+			</items></IconTabBar>
+				<Table id="idProductionTable" inset="false" items="{/results}">
+					<headerToolbar>
+						<OverflowToolbar >
+							<Title text="Production Order Details View" level="H2"/>
+							<content>
+								<!--<ToolbarSpacer/>-->
+								<!--<SearchField liveChange=".onSearch" width="17.5rem"/>-->
+								<!--<OverflowToolbarButton icon="sap-icon://approvals" text="DateSorter" type="Transparent" press=".getDated"/>-->
+								<!--<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>-->
+								       
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<infoToolbar>
+						<OverflowToolbar>
+							<Label text="Received Production Orders"/>
+						</OverflowToolbar>
+					</infoToolbar>
+					<columns>
+						<Column width="12em">
+							<Text text="Production Order NO"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Production Order Type"/>
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+							<Text text="Production Plant"/>
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+							<Text text="Production Start Date"/>
+						</Column>
+						<Column hAlign="End">
+							<Text text="Production End Date"/>
+						</Column> 
+						
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle" type="Navigation" press=".onProdTablePress">
+							<cells>
+								<ObjectStatus class="sapUiSmallMarginBottom rose" title="" icon="sap-icon://business-card" text="{OrderNumber}"/>
+								<ObjectStatus class="sapUiSmallMarginBottom " text="{OrderType}" icon="sap-icon://business-objects-mobile" state="Success"/>
+								<!--<Text-->
+								<!--	text="{Plantname}" /> -->
+								<ObjectStatus class="sapUiSmallMarginBottom blue" text="{ProductionPlant}" icon="sap-icon://lead-outdated" state="Error"/>
+								<ObjectStatus class="sapUiSmallMarginBottom cream" text="{
+									          parts:[
+									            {path : 'ProductionStartDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" icon="sap-icon://date-time" state="None"/> 
+								
+								
+								<l:VerticalLayout class="sapUiContentPadding">
+								
+									
+									<ObjectStatus class="sapUiSmallMarginBottom purple" text="{
+									          parts:[
+									            {path : 'ProductionFinishDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" icon="sap-icon://date-time" state="None"/> 
+								
+									
+								</l:VerticalLayout> 
+							
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			 
+			</Page> 
+			
+			
+			
+			
+			<Page id="detail3" title="Production Order Description Page" backgroundDesign="Solid" showNavButton="true" navButtonPress=".onPressDetailBack">
+				<IconTabBar id="idProddescIconTabBarNoIcons" expanded="{device>/isNoPhone}"
+	                           class="sapUiResponsiveContentPadding" select=".onFilterSelect">
+		  
+		  
+		<items>
+			<IconTabFilter text="Production Order Header Details" key="NotifHead" class="sapUiResponsiveContentPadding">
+				            
+				                   <VBox class="sapUiSmallMargin">
+					<!--<Label text="This is Detail Page 2" />-->
+					<!--<Text text="Here you could change the Split Application mode. After the mode change, resize the browser window to see the difference in the master form behaviour." />-->
+					<!--<Panel headerText="Upper center"> -->
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="prodformer" editable="false" layout="ResponsiveGridLayout" title="Production Order Detail Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" >
+							<form:content id="form" key="prop"> 
+							  	<core:Title text="Production Order Info" class="blue" />
+								<Label text="Production Order No" class="title"/>
+								<Text text="{prodmodel>/OrderNumber}" class="green"/> 
+								<Label text="Order Sequence Number" class="title"/>
+								<Text text="{prodmodel>/OrderSeqNo}" class="green"/> 
+								<Label text="Production Order Type" class="title"/>
+								<Text text="{prodmodel>/OrderType}" class="green"/> 
+							    <Label text="Production Order Start Date" class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/ProductionStartDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+									
+								<Label text="Production Order End Date" class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/ProductionFinishDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+									
+								<Label text="Actual Release Date"  class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/ActualReleaseDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+								
+								
+							
+						
+							</form:content> 
+						
+
+						</form:SimpleForm> 
+					
+					</VBox>
+					<!--	</Panel>  -->  
+				
+				
+					
+					
+				</VBox> 
+				       
+				
+			</IconTabFilter>
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			<IconTabFilter text="Material Description" key="NotifProb">
+			 
+				 <VBox class="sapUiSmallMargin">
+				
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="prodform" editable="false" layout="ResponsiveGridLayout" title="Production Material Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content id="prob" key="probdet">
+								
+							 <core:Title text="Production Material" class="blue" />
+								<Label text="Material No" class="title"/>
+								<Text text="{prodmodel>/Material}" class="green"/> 
+								<Label text="Material Description" class="title"/>
+								<Text text="{prodmodel>/MaterialText}" class="green"/> 
+								<Label text="MRP CONTROLLER" class="title"/>
+								<Text text="{prodmodel>/MrpController}" class="green"/> 
+								<Label text="MRP CONTROLLER" class="title"/>
+								<Text text="{prodmodel>/MrpController}" class="green"/> 
+								<Label text="Confirmed Ordered Quantity" class="title"/>
+								<Text text="{prodmodel>/ConfirmedQuantity}" class="green"/> 
+							    <Label text="ExplDate" class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/ExplDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+									
+								<Label text="Material process End Date" class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/FinishDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+									
+								<Label text="Actual Release Date"  class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/ActualReleaseDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+								
+								
+								
+								
+							</form:content>
+						</form:SimpleForm> 
+					</VBox>  
+				</VBox>
+			</IconTabFilter>
+			
+			
+			<IconTabFilter text="Routing" key="NotifProb">
+			 
+				 <VBox class="sapUiSmallMargin">
+				
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="router" editable="false" layout="ResponsiveGridLayout" title="Routing Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content id="prob" key="probdet">
+								
+							 <core:Title text="Routing Production" class="blue" />
+								<Label text="Routing No" class="title"/>
+								<Text text="{prodmodel>/RoutingNo}" class="green"/> 
+								<Label text="Reservation Number" class="title"/>
+								<Text text="{prodmodel>/ReservationNumber}" class="green"/> 
+								<Label text="Sales Order No" class="title"/>
+								<Text text="{prodmodel>/SalesOrderItem}" class="green"/> 
+								<Label text="Scrap" class="title"/>
+								<Text text="{prodmodel>/Scrap}" class="green"/> 
+								<Label text="Confirmed Ordered Quantity" class="title"/>
+								<Text text="{prodmodel>/TargetQuantity}" class="green"/> 
+							    <Label text="Schedule Delivery Date" class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/SchedReleaseDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+									
+								<Label text="process Start Date" class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/StartDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+									
+								<Label text="Actual Release Date"  class="title"/>
+								<Text text="{
+									          parts:[
+									            {path : 'prodmodel>/ActualReleaseDate' }
+									          ],
+									          formatter: '.formatter.DateConvertor'
+									}" class="green"/> 
+								
+								
+								
+								
+							</form:content>
+						</form:SimpleForm> 
+					</VBox>  
+				</VBox>
+			</IconTabFilter> 
+			
+			<IconTabFilter text="Production Unit" key="NotifProb">
+			 
+				 <VBox class="sapUiSmallMargin">
+				
+					<VBox class="sapUiSmallMargin">
+						<form:SimpleForm id="prodplnt" editable="false" layout="ResponsiveGridLayout" title="Production Plant Description" labelSpanXL="4"
+							labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+							columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content id="prob" key="probdet">
+								
+							 <core:Title text="Production Plant Unit" class="blue" />
+								<Label text="Production Plant ID" class="title"/>
+								<Text text="{prodmodel>/ProductionPlant}" class="green"/> 
+								<Label text="Process Plant ID" class="title"/>
+								<Text text="{prodmodel>/PlanPlant}" class="green"/> 
+								<Label text="System Status" class="title"/>
+								<Text text="{prodmodel>/SystemStatus}" class="green"/> 
+								<Label text="UNIT" class="title"/>
+								<Text text="{prodmodel>/Unit}" class="green"/> 
+								<Label text="Work Breakdown Structure" class="title"/>
+								<Text text="{prodmodel>/WbsElement}" class="green"/> 
+							     
+								
+								
+								
+								
+							</form:content>
+						</form:SimpleForm> 
+					</VBox>  
+				</VBox>
+			</IconTabFilter>
+			
+			
+			
+			
+			
+			
+			
+			
+	
+	
+		
+			
+			
+			
+			
+			
+			
+			
+			
+		</items>
+		
+	</IconTabBar>
+
+			</Page>
+			
+			
+		</detailPages> 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<masterPages>
+			<Page id="master" title="Shop Floor Maintenace Menu" backgroundDesign="List">
+				<List>
+					<StandardListItem title="MENU ORDER" type="Navigation" press=".onPressGoToMaster"/>
+				</List>
+			</Page>
+			<Page id="master2" title="Select the Option" backgroundDesign="List" showNavButton="true" navButtonPress=".onPressMasterBack">
+				<List itemPress=".onListItemPress">
+					<StandardListItem title="Planned Orders" type="Active" custom:to="detail"/>
+					<StandardListItem title="Production Orders" type="Active" custom:to="detail2"/>
+					<StandardListItem title="DashBoard" type="Active" custom:to="dash"/>
+				
+				</List>
+			</Page>
+		</masterPages>
+	</SplitContainer>
+</mvc:View>

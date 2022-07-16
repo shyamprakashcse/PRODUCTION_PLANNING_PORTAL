@@ -1,0 +1,23 @@
+<mvc:View controllerName="COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL.controller.LOGINPAGE"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:l="sap.ui.layout"
+	displayBlock="true" xmlns="sap.m">
+	<App >
+		<pages>
+			<Page title="{i18n>title}" class="p1" id="page">
+			
+				<html:p class="headingpara center ">Shop Floor Portal System
+				</html:p>
+				<html:div class="logindiv">
+					<html:div class="left">
+						<Input placeholder="Enter Your Production  Id" id="empid" liveChange="validateInput"></Input>
+						<Input placeholder="Enter Your Password" type="Password" id="emppass" liveChange="validatePassword"></Input>
+						<Button text="Login" class="sapUiSmallMarginBottom btn" press="login" width="280px"></Button>
+						<!--<Button text="NextPage" class="sapUiSmallMarginBottom" press="go" width="280px" ></Button>-->
+					</html:div>
+				</html:div>
+				
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

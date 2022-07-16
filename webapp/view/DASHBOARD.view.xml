@@ -1,0 +1,108 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="COM.PRODUCTIONPLANNINGPORTALPRODUCTIONPLANNINGPORTAL.controller.DASHBOARD" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Shop FLoor Maintenance Dashboard" id="TileBoard" class="dashpage">  
+				
+				<IconTabBar
+			id="idIconTabBar"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding myWidth">
+			<items>
+			
+				<IconTabFilter
+					icon="sap-icon://account"
+					iconColor="Positive"
+					count=""
+					text="{planmodel>/Usnam}"
+					key="Ok" />
+				<IconTabFilter
+					icon="sap-icon://add-equipment"
+					iconColor="Negative"
+					count=""
+					text="{planmodel>/Designation}"
+					key="Heavy" />
+				<IconTabFilter
+			
+					icon="sap-icon://business-card"
+					iconColor="Positive"
+					count=""
+					text="ID NO {planmodel>/Kunnr}"
+					key="Overweight" /> 
+					
+					<IconTabFilter
+			
+					icon="sap-icon://appointment"
+					iconColor="Critical"
+					count="{planmodel>/Plcnt}"
+					text="Planned Order"
+					key="planord" /> 
+					
+						<IconTabFilter
+			
+					icon="sap-icon://approvals"
+					iconColor="Negative"
+					count="{planmodel>/Prcnt}"
+					text="Production Order"
+					key="Prodord" /> 
+					
+						<IconTabFilter
+			
+					icon="sap-icon://log"
+					iconColor="Negative"
+				    
+					text="Log Out"
+					key="Logout" /> 
+					
+					
+			</items></IconTabBar>
+			 
+		        <l:VerticalLayout>
+		        	
+		    
+				
+				<l:HorizontalLayout>
+				<StandardTile 
+				
+				icon = "sap-icon://appointment"
+				press = "pltile"
+				type="Create"
+				number="{planmodel>/Plcnt}"
+				numberUnit="Nos"
+				title="Total Planned Orders"
+				info="Planning Order Details"
+				infoState="Success" />
+				
+				<StandardTile 
+				
+				icon = "sap-icon://alert"
+				press = "prtile"
+				type="Create"
+				number="{planmodel>/Prcnt}"
+				numberUnit="Nos"
+				title="Production Order"
+				info="Total Production Order"
+				infoState="Error" />
+				
+			
+					
+					
+				
+				
+				
+				
+				
+					</l:HorizontalLayout>
+				
+				</l:VerticalLayout>
+			
+			    
+				
+				
+	
+
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

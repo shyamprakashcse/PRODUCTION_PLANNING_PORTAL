@@ -1,0 +1,33 @@
+<!--<core:FragmentDefinition xmns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui">-->
+<!--	<Dialog id="datevalue" icon="" state="Info" title="Enter Date"-->
+<!--	     class="sapUiNoContentPadding sapUiSizeCompact" verticalScrolling="true"-->
+<!--		type="Standard" draggable="true">-->
+<!--		<content>-->
+<!--		<DatePicker id="DP1" placeholder="Enter Date ..." change="handleChange" class="sapUiTinyMargin" displayFormat="yyyy-MM-dd" -->
+<!--		valueFormat="yyyy-MM-dd" width="7rem"/>-->
+<!--		</content>-->
+<!--		<endButton>-->
+<!--			<Button text="Select" press="onOkDialog" visible="true"></Button>-->
+<!--			<Button text="Cancel" press="onClose" visible="true"></Button>-->
+<!--		</endButton>-->
+<!--	</Dialog>-->
+<!--</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="datevalue" icon=""  title="Enter Date" class="sapUiNoContentPadding sapUiSizeCompact" verticalScrolling="true"
+		type="Standard" draggable="true">
+		<content>
+			
+			<DatePicker
+			id="year"
+			value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="long"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/>
+
+		</content>
+			<Button text="Close" press="onClose" visible ="true"></Button>
+		<endButton>
+			<Button text="Select" press="onOkDialog" visible="true"></Button>  
+		
+		</endButton>
+	</Dialog> 
+</core:FragmentDefinition>

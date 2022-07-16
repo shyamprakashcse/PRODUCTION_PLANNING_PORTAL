@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="plyr" icon=""  title="Enter Date" class="sapUiNoContentPadding sapUiSizeCompact" verticalScrolling="true"
+		type="Standard" draggable="true">
+		<content>
+			
+			<DatePicker
+			id="year"
+			value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="long"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/>
+
+		</content>
+			<Button text="Close" press="onPlYrClose" visible ="true"></Button>
+		<endButton>
+			<Button text="Select" press="onPlOkDialog" visible="true"></Button>  
+		
+		</endButton>
+	</Dialog> 
+</core:FragmentDefinition>
